@@ -795,7 +795,7 @@ extern std::array<std::pair<u16, char const*>, meth_count> const meth_list
     { 0x830E, "_meth_830E" },
     { 0x830F, "_meth_830F" },
     { 0x8310, "getweaponlistall" },
-    { 0x8311, "_meth_8311" },
+    { 0x8311, "getweaponlistprimaries" },
     { 0x8312, "_meth_8312" },
     { 0x8313, "giveweapon" },
     { 0x8314, "takeweapon" },
