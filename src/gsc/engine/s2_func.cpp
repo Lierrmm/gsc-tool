@@ -366,7 +366,7 @@ extern std::array<std::pair<u16, char const*>, func_count> const func_list
     { 0x162, "_func_162" },
     { 0x163, "_func_163" },
     { 0x164, "_func_164" },
-    { 0x165, "_func_165" },
+    { 0x165, "exitlevel" },
     { 0x166, "_func_166" },
     { 0x167, "_func_167" },
     { 0x168, "_func_168" },
