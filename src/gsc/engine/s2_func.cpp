@@ -70,7 +70,7 @@ extern std::array<std::pair<u16, char const*>, func_count> const func_list
     { 0x03A, "getdvarint" },
     { 0x03B, "getdvarfloat" },
     { 0x03C, "_func_03C" },
-    { 0x03D, "getTime" },
+    { 0x03D, "gettime" },
     { 0x03E, "_func_03E" },
     { 0x03F, "_func_03F" },
     { 0x040, "_func_040" },
