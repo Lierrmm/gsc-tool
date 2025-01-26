@@ -330,7 +330,7 @@ extern std::array<std::pair<u16, char const*>, func_count> const func_list
     { 0x13E, "_func_13E" },
     { 0x13F, "_func_13F" },
     { 0x140, "precachestring" },
-    { 0x141, "_func_141" },
+    { 0x141, "precachemenu" },
     { 0x142, "_func_142" },
     { 0x143, "_func_143" },
     { 0x144, "_func_144" },
