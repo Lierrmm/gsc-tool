@@ -1,4 +1,4 @@
-// Copyright 2024 xensik. All rights reserved.
+// Copyright 2025 xensik. All rights reserved.
 //
 // Use of this source code is governed by a GNU GPLv3 license
 // that can be found in the LICENSE file.
@@ -11,7 +11,7 @@ namespace xsk::arc::t7
 extern std::array<std::pair<u16, opcode>, code_count> const code_list;
 extern std::array<std::pair<u32, char const*>, hash_count> const hash_list;
 
-context::context() : arc::context(props::header72 | props::size64 | props::hashids | props::devstr | props::spaces | props::refvarg | props::foreach, engine::t7, endian::little, system::pc, header_magic)
+context::context(arc::instance inst) : arc::context(props::header72 | props::size64 | props::hashids | props::devstr | props::spaces | props::refvarg | props::foreach, engine::t7, endian::little, system::pc, inst, header_magic)
 {
     code_map_.reserve(code_list.size());
     code_map_rev_.reserve(code_list.size());

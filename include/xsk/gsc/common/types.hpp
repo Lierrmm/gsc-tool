@@ -1,4 +1,4 @@
-// Copyright 2024 xensik. All rights reserved.
+// Copyright 2025 xensik. All rights reserved.
 //
 // Use of this source code is governed by a GNU GPLv3 license
 // that can be found in the LICENSE file.
@@ -80,9 +80,10 @@ struct props
         boolnotand = 1 << 5,  // !&& expr opcode
         offs8      = 1 << 6,  // offset shift by 8
         offs9      = 1 << 7,  // offset shift by 9
+        extension  = 1 << 8,  // s4 extension
         hash       = 1 << 9,  // iw9 identifiers
-        farcall    = 1 << 9,  // iw9 new call system
-        foreach    = 1 << 10, // iw9 foreach
+        farcall    = 1 << 10, // iw9 new call system
+        foreach    = 1 << 11, // iw9 foreach
     };
 
     props(values value) : value_(value) {}

@@ -1,4 +1,4 @@
-// Copyright 2024 xensik. All rights reserved.
+// Copyright 2025 xensik. All rights reserved.
 //
 // Use of this source code is governed by a GNU GPLv3 license
 // that can be found in the LICENSE file.
@@ -20,7 +20,7 @@ constexpr u32 max_string_id = 33386;
 struct context : public gsc::context
 {
 public:
-    context();
+    context(gsc::instance inst);
 };
 
 } // namespace xsk::gsc::iw5_pc

@@ -1,4 +1,4 @@
-// Copyright 2024 xensik. All rights reserved.
+// Copyright 2025 xensik. All rights reserved.
 //
 // Use of this source code is governed by a GNU GPLv3 license
 // that can be found in the LICENSE file.
@@ -388,7 +388,12 @@ auto assembler::assemble_call_far(instruction const& inst, bool thread) -> void
         stack_.write<u16>(static_cast<u16>(file_id));
 
     if (file_id == 0)
-        stack_.write_cstr(encrypt_string(inst.data[0]));
+    {
+        if (ctx_->props() & props::extension)
+            stack_.write_cstr(encrypt_string(inst.data[0] + (ctx_->instance() == instance::server ? ".gsc" : ".csc")));
+        else
+            stack_.write_cstr(encrypt_string(inst.data[0]));
+    }
 
     if (ctx_->props() & props::tok4)
         stack_.write<u32>(func_id);
@@ -504,6 +509,7 @@ auto assembler::assemble_switch_table(instruction const& inst) -> void
             }
             else
             {
+                // TODO: Sledgehammer's shenanigans (string id == 0)
                 script_.write<u32>((ctx_->engine() == engine::iw9) ? 0 : i + 1);
                 stack_.write_cstr(encrypt_string(inst.data[1 + (4 * i) + 2]));
             }

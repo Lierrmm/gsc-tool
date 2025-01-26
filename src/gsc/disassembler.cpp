@@ -1,4 +1,4 @@
-// Copyright 2024 xensik. All rights reserved.
+// Copyright 2025 xensik. All rights reserved.
 //
 // Use of this source code is governed by a GNU GPLv3 license
 // that can be found in the LICENSE file.
@@ -358,6 +358,11 @@ auto disassembler::disassemble_call_far(instruction& inst, bool thread) -> void
     auto func_id = (ctx_->props() & props::tok4) ? stack_.read<u32>() : stack_.read<u16>();
     auto func_name = func_id == 0 ? decrypt_string(stack_.read_cstr()) : ctx_->token_name(func_id);
 
+    if (ctx_->props() & props::extension && func_id == 0)
+    {
+        file_name.resize(file_name.size() - 4);
+    }
+
     inst.data.push_back(std::move(file_name));
     inst.data.push_back(std::move(func_name));
 
@@ -507,8 +512,19 @@ auto disassembler::disassemble_switch_table(instruction& inst) -> void
         {
             if (data == 0)
             {
-                stack_.read_cstr(); // [0x01 0x00] unencrypted
-                inst.data.push_back("default");
+                auto str = stack_.read_cstr(); // [0x01 0x00] unencrypted
+
+                // Sledgehammer's shenanigans
+                if (ctx_->engine() == engine::s2 && str != "\x01")
+                {
+                    inst.data.push_back("case");
+                    inst.data.push_back(std::format("{}", static_cast<int>(switch_type::string)));
+                    inst.data.push_back(decrypt_string(str));
+                }
+                else
+                {
+                    inst.data.push_back("default");
+                }
             }
             else if (data < 0x100000)
             {
